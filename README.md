@@ -33,6 +33,12 @@
 2. Access the API documentation at - http://127.0.0.1:8000/api/docs/ (under development)
 
 
+**Endpoints**
+
+1. base_url/index
+2. base_url/get_routes
+
+
 **Features** 
 
 1. Show possible stops between routes.
