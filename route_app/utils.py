@@ -57,6 +57,8 @@ def get_route_details(start, finish):
         print(f"Error: API request failed with status code {response.status_code}")
         return None
 
+
+
 def find_optimal_locations(distances_miles, addresses):
     optimal_locations = []  # Initialize an empty list for optimal locations
     cumulative_distance = 0  # Variable to track the cumulative distance
@@ -65,6 +67,5 @@ def find_optimal_locations(distances_miles, addresses):
         cumulative_distance += distance_miles  # Add the current distance to the cumulative total
         if cumulative_distance >= 500:  # Check if the cumulative distance has reached or exceeded 500 miles
             optimal_locations.append(address)  # Add the corresponding address to the list
-            # No reset, just continue accumulating
 
     return optimal_locations
