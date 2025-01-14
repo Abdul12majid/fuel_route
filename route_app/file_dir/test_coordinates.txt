@@ -1,0 +1,48 @@
+"""
+#start_coordinates = (8.681495, 49.41461)
+#finish_coordinates = (8.687872, 49.420318)
+
+test coordinate:- 
+
+Chicago, IL to St. Louis, MO
+
+{
+    "start_lat": "41.878113",
+    "start_lon": "-87.629799",
+    "end_lat": "38.627003",
+    "end_lon": "-90.199404"
+}
+
+Los Angeles, CA to San Diego, CA
+{
+    "start_lat": "34.052235",
+    "start_lon": "-118.243683",
+    "end_lat": "32.715736",
+    "end_lon": "-117.161087"
+}
+
+Washington, D.C. to Boston:
+{
+    "start_lat": "38.907776",
+    "start_lon": "-77.036530",
+    "end_lat": "42.360082",
+    "end_lon": "-71.058880"
+}
+
+Dallas to Houston:
+{
+    "start_lat": "32.776664",
+    "start_lon": "-96.796988",
+    "end_lat": "29.760427",
+    "end_lon": "-95.369804"
+}
+
+Washington, D.C. (start) to Cincinnati, Ohio (end)
+{
+    "start_lon": "-77.039513",
+    "start_lat": "38.897231",
+    "end_lon": "-84.518722",
+    "end_lat": "39.103118"
+}
+
+"""

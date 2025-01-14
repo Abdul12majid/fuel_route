@@ -15,8 +15,8 @@ def get_route(request):
     serializer = RouteRequestSerializer(data=request.data)
     if serializer.is_valid():
         # Extract coordinates from the request
-        start_coordinates = (serializer.validated_data['start_lat'], serializer.validated_data['start_lon'])
-        finish_coordinates = (serializer.validated_data['end_lat'], serializer.validated_data['end_lon'])
+        start_coordinates = (serializer.validated_data['start_lon'], serializer.validated_data['start_lat'])
+        finish_coordinates = (serializer.validated_data['end_lon'], serializer.validated_data['end_lat'])
         
         # Get the route details from OpenRouteService API
         route_details = get_route_details(start_coordinates, finish_coordinates)

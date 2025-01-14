@@ -3,6 +3,7 @@ import pandas as pd
 from decouple import config
 from django.conf import settings
 import os
+from fuzzywuzzy import process
 
 # Load fuel prices data globally for the API
 FUEL_PRICES_FILE = os.path.join(settings.BASE_DIR, 'route_app', 'file_dir', 'fuel_prices.csv')
@@ -88,7 +89,7 @@ def calculate_total_amount(optimal_locations):
         best_match, score = process.extractOne(address, address_list)
         
         #score > 80 means a strong match
-        if score >= 80:
+        if score >=60:
 
             # Get the corresponding retail price for the best match
             fuel_price_row = fuel_prices_data[fuel_prices_data['Address'] == best_match]
@@ -103,7 +104,3 @@ def calculate_total_amount(optimal_locations):
         total_amount += cost  # Add the cost for this address to total amount
 
     return total_amount
-
-
-#start_coordinates = (8.681495, 49.41461)
-#finish_coordinates = (8.687872, 49.420318)
