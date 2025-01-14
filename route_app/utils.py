@@ -1,9 +1,11 @@
 import requests
 import pandas as pd
 from decouple import config
+from django.conf import settings
+import os
 
 # Load fuel prices data globally for the API
-FUEL_PRICES_FILE = 'file_dir/fuel_prices.csv'
+FUEL_PRICES_FILE = os.path.join(settings.BASE_DIR, 'route_app', 'file_dir', 'fuel_prices.csv')
 fuel_prices_data = pd.read_csv(FUEL_PRICES_FILE)
 
 # Constants
@@ -12,7 +14,7 @@ VEHICLE_MPG = 10
 
 #function to fetch the route, stops and distance from Open Route API
 def get_route_details(start, finish):
-    api_key = '5b3ce3597851110001cf6248df093dc1726d48efb78af576218be836'
+    api_key = config("API_KEY")
     base_url = 'https://api.openrouteservice.org/v2/directions/driving-car'
     
     params = {
@@ -69,3 +71,39 @@ def find_optimal_locations(distances_miles, addresses):
             optimal_locations.append(address)  # Add the corresponding address to the list
 
     return optimal_locations
+
+
+
+# Function to calculate cost based on optimal locations
+def calculate_total_amount(optimal_locations):
+    total_amount = 0 
+
+    # List of addresses from CSV
+    address_list = fuel_prices_data['Address'].tolist()
+
+    # Iterate over each optimal location
+    for address in optimal_locations:
+
+        # Using Fuzzy match to match the address with the addresses in the CSV
+        best_match, score = process.extractOne(address, address_list)
+        
+        #score > 80 means a strong match
+        if score >= 80:
+
+            # Get the corresponding retail price for the best match
+            fuel_price_row = fuel_prices_data[fuel_prices_data['Address'] == best_match]
+            retail_price = fuel_price_row['Retail Price'].values[0]
+        else:
+
+            # use average reatail price if no good match is found
+            retail_price = 3.1
+        
+        # Perform the cost calculation: (500 / 10) * retail price
+        cost = (500 / 10) * retail_price
+        total_amount += cost  # Add the cost for this address to total amount
+
+    return total_amount
+
+
+#start_coordinates = (8.681495, 49.41461)
+#finish_coordinates = (8.687872, 49.420318)

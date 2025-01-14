@@ -5,3 +5,4 @@ class RouteRequestSerializer(serializers.Serializer):
     start_lon = serializers.FloatField()
     end_lat = serializers.FloatField()
     end_lon = serializers.FloatField()
+
